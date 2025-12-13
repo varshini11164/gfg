@@ -1,19 +1,16 @@
 class Solution {
+    private static final int size=26;
     public char nonRepeatingChar(String s) {
         // code here
-        int n = s.length();
-        for(int i=0;i<n;i++){
-            boolean found=false;
-            for(int j=0;j<n;j++){
-                if(i!=j&&s.charAt(i)==s.charAt(j)){
-                    found=true;
-                    break;
-                }
+        int[] freq=new int[size];
+        for(char c:s.toCharArray()){
+            freq[c-'a']++;
+        }
+        for(char c:s.toCharArray()){
+            if(freq[c-'a']==1){
+                return c;
             }
-            if(!found)
-                return s.charAt(i);
         }
         return '$';
-        
     }
 }
