@@ -1,20 +1,25 @@
 // User function Template for Java
 class Solution {
-    public int countPairs(int[] arr, int k) {
-        // Create a frequency map
-        Map<Integer, Integer> freq = new HashMap<>();
-        
-        // Count frequency of each element
-        for (int num : arr) {
-            freq.put(num, freq.getOrDefault(num, 0) + 1);
-        
-        int count = 0;
-        for (int num : freq.keySet()) {
-            if (freq.containsKey(num + k)) {
-                count += freq.get(num) * freq.get(num + k);
+    int countPairs(int[] arr, int k) {
+        // code here
+        HashMap<Integer,Integer> freq=new HashMap<>();
+        int cnt=0;
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            if(freq.containsKey(arr[i]+k)){
+                cnt =cnt+freq.get(arr[i]+k);
+            }
+            if(freq.containsKey(arr[i]-k)){
+                cnt=cnt+freq.get(arr[i]-k);
+            }
+            if(freq.containsKey(arr[i])){
+                freq.put(arr[i],freq.get(arr[i])+1);
+            }
+            else {
+                freq.put(arr[i],1);
             }
         }
-        
-        return count;
+        return cnt;
+            
     }
 }
